@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>File Manager</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><span class="logo">F</span>Filebox</div>
+    <nav id="nav" class="nav">
+      <button data-v="files" class="on">My files</button>
+      <button data-v="starred">Starred</button>
+      <button data-v="trash">Trash</button>
+    </nav>
+    <div class="usage">
+      <div class="meter"><div id="meter"></div></div>
+      <small id="usageText"></small>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="bar">
+      <input id="search" type="search" placeholder="Search files and folders" aria-label="Search">
+      <select id="sort" aria-label="Sort by"><option value="name">Name</option><option value="date">Newest</option><option value="size">Size</option></select>
+      <button id="modeBtn" class="ghost" aria-label="Toggle grid or list view">List</button>
+      <button id="newFolder" class="ghost">New folder</button>
+      <button id="uploadBtn" class="primary">Upload</button>
+      <input id="picker" type="file" multiple hidden>
+    </header>
+    <div class="head">
+      <nav id="crumbs" class="crumbs" aria-label="Breadcrumb"></nav>
+      <button id="emptyTrash" class="danger" hidden>Empty trash</button>
+    </div>
+    <div id="prog" class="prog" hidden><div></div></div>
+    <section id="grid" class="grid"></section>
+    <p id="empty" class="empty" hidden></p>
+  </main>
+</div>
+
+<div id="drop" class="drop" hidden>Drop files to upload</div>
+<div id="toast" class="toast" role="status"></div>
+
+<dialog id="dlg"><form method="dialog">
+  <h3 id="dlgTitle"></h3>
+  <input id="dlgInput" maxlength="120" required autocomplete="off">
+  <div class="row"><button value="cancel" formnovalidate class="ghost">Cancel</button><button value="ok" class="primary">Save</button></div>
+</form></dialog>
+
+<dialog id="pv" class="pv"><div class="pvbar"><strong id="pvName"></strong><button id="pvClose" class="ghost">Close</button></div><div id="pvBody" class="pvbody"></div></dialog>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
